@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<donazioak>
+    <donazioa>
+        <enpresa_emailea>
+            <ifk>A12345678</ifk>
+            <izena>AAAAA</izena>
+        </enpresa_emailea>
+        <donazio_data>2026-03-25</donazio_data>
+        <elikagaiak>
+            <elikagaia mota="iragankorra">
+                <erreferentzia>IR10001</erreferentzia>
+                <izena>Esne osoa</izena>
+                <kopurua>500</kopurua>
+                <enpresa_fabrikatzailea>Kaiku</enpresa_fabrikatzailea>
+                <iraungitze_data>2026-04-10</iraungitze_data>
+                <hoztuta_mantendu>BAI</hoztuta_mantendu>
+            </elikagaia>
+            <elikagaia mota="iragankorra">
+                <erreferentzia>IR10002</erreferentzia>
+                <izena>Jogurt naturala</izena>
+                <kopurua>200</kopurua>
+                <enpresa_fabrikatzailea>Kaiku</enpresa_fabrikatzailea>
+                <iraungitze_data>2026-04-05</iraungitze_data>
+                <hoztuta_mantendu>BAI</hoztuta_mantendu>
+            </elikagaia>
+        </elikagaiak>
+    </donazioa>
+
+    <donazioa>
+        <enpresa_emailea>
+            <ifk>B12345678</ifk>
+            <izena>BBBBB</izena>
+        </enpresa_emailea>
+        <donazio_data>2026-03-20</donazio_data>
+        <elikagaiak>
+            <elikagaia mota="ez_iragankorra">
+                <erreferentzia>EZ20001</erreferentzia>
+                <izena>Sardinak olioan</izena>
+                <kopurua>1000</kopurua>
+                <enpresa_fabrikatzailea>Nardin</enpresa_fabrikatzailea>
+                <kontserba>BAI</kontserba>
+            </elikagaia>
+            <elikagaia mota="ez_iragankorra">
+                <erreferentzia>EZ20002</erreferentzia>
+                <izena>Arroz zuria</izena>
+                <kopurua>800</kopurua>
+                <enpresa_fabrikatzailea>SOS</enpresa_fabrikatzailea>
+                <kontserba>EZ</kontserba>
+            </elikagaia>
+        </elikagaiak>
+    </donazioa>
+
+    <donazioa>
+        <enpresa_emailea>
+            <ifk>C12345678</ifk>
+            <izena>CCCCC</izena>
+        </enpresa_emailea>
+        <donazio_data>2026-03-22</donazio_data>
+        <elikagaiak>
+            <elikagaia mota="erdi_iragankorra">
+                <erreferentzia>ER30001</erreferentzia>
+                <izena>Ogi txigortua</izena>
+                <kopurua>300</kopurua>
+                <enpresa_fabrikatzailea>Bimbo</enpresa_fabrikatzailea>
+            </elikagaia>
+            <elikagaia mota="ez_iragankorra">
+                <erreferentzia>EZ30002</erreferentzia>
+                <izena>Makarroiak</izena>
+                <kopurua>600</kopurua>
+                <enpresa_fabrikatzailea>Gallo</enpresa_fabrikatzailea>
+                <kontserba>EZ</kontserba>
+            </elikagaia>
+        </elikagaiak>
+    </donazioa>
+
+</donazioak>    
