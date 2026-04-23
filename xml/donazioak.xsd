@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="IzenMota">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="150" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="IfkMota">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z][0-9]{8}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ErreferentziaMota">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(IR|EZ|ER|EI)[0-9]{5}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MotaAtributuaEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="iragankorra" />
+            <xs:enumeration value="ez_iragankorra" />
+            <xs:enumeration value="erdi_iragankorra" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BaiEzMota">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BAI" />
+            <xs:enumeration value="EZ" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:element name="donazioak">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="donazioa" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            
+                            <xs:element name="enpresa_emailea">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="ifk" type="IfkMota" />
+                                        <xs:element name="izena" type="IzenMota" /> </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="donazio_data" type="xs:date" />
+
+                            <xs:element name="elikagaiak">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="elikagaia" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="erreferentzia" type="ErreferentziaMota" />
+                                                    <xs:element name="izena" type="IzenMota" /> <xs:element name="kopurua" type="xs:positiveInteger" />
+                                                    <xs:element name="enpresa_fabrikatzailea" type="IzenMota" /> <xs:element name="iraungitze_data" type="xs:date" minOccurs="0" />
+                                                    <xs:element name="hoztuta_mantendu" type="BaiEzMota" minOccurs="0" />
+                                                    <xs:element name="kontserba" type="BaiEzMota" minOccurs="0" />
+                                                </xs:sequence>
+                                                <xs:attribute name="mota" type="MotaAtributuaEnum" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
