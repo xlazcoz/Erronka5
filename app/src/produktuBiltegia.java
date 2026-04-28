@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class produktuBiltegia {
     int id_produktua;
@@ -109,4 +110,39 @@ public class produktuBiltegia {
             return false;
         }
     }
+
+    
+    public ArrayList<produktuBiltegia> biltegikoProduktuakBistaratu(int id_biltegia) {
+        String sql = "{call biltegiko_produktuak_ikusi(?)}";
+        ArrayList<produktuBiltegia> lista = new ArrayList<>();
+        
+        try (
+                Connection conn = konexioa.getKonexioa();
+                CallableStatement cstmt = conn.prepareCall(sql)) {
+
+            cstmt.setInt(1, id_biltegia);
+            
+            try (ResultSet rs = cstmt.executeQuery()) {
+                while (rs.next()) {
+                    int id_prod = rs.getInt("id_produktua");
+                    String nombre = rs.getString("izena");
+                    int cant = rs.getInt("kantitatea");
+                    int pasillo = rs.getInt("pasilokozen");
+                    int ubicacion = rs.getInt("kokapenkodea");
+                    LocalDate caducidad = LocalDate.parse(rs.getString("iraungintze_data"));
+
+                    produktuBiltegia pb = new produktuBiltegia(id_prod, id_biltegia, pasillo, ubicacion, cant, caducidad);
+                    pb.izena = nombre; 
+                    lista.add(pb);
+                }
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }

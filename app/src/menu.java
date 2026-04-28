@@ -271,6 +271,7 @@ public class menu {
                     "2. Produktuak 0 donaziokin \r\n" +
                     "3. Stock maximoa duen produktua \r\n" +
                     "4. Produktua biltegitik borratu \r\n" +
+                    "5. Biltegiko produktuak ikusi \r\n" +
                     "0. bueltatu ");
             menua = sc.nextInt();
             sc.nextLine();
@@ -328,6 +329,27 @@ public class menu {
                                 "Errorea: Ezin izan da produktua ezabatu biltegitik (agian ez da existitzen edo errorea egon da datu-basean).");
                     }
                     break;
+
+                case 5:
+                    produktuBiltegia pbInbentarioa = new produktuBiltegia(0, null, 0);
+                    ArrayList<produktuBiltegia> inbentarioa = pbInbentarioa.biltegikoProduktuakBistaratu(biltegia);
+
+                    if (inbentarioa == null) {
+                        System.out.println("Errorea: Ezin izan da datu-basearekin konektatu.");
+                    } else if (inbentarioa.isEmpty()) {
+                        System.out.println("Biltegi hau hutsik dago momentuan.");
+                    } else {
+                        System.out.println("\n--- BILTEGIKO INBENTARIOA ---");
+                        for (produktuBiltegia pDatu : inbentarioa) {
+                            System.out.println("ID: " + pDatu.id_produktua +
+                                    " | Izena: " + pDatu.izena +
+                                    " | Stock: " + pDatu.kantitatea +
+                                    " | Pasiloa: " + pDatu.pasilokozen +
+                                    " | Kokapena: " + pDatu.kokapenkodea +
+                                    " | Iraungintze data: " + pDatu.iraungintze_data);
+                        }
+                    }
+                    break;
                 case 0:
                     break;
                 default:
@@ -375,6 +397,8 @@ public class menu {
                     if (!stockOndo) {
                         System.out.println(
                                 "Errorea: Ez dago stock nahikorik biltegian edo produktua ez dago biltegi honetan.");
+                                System.out.println(
+                                "Comprobatu biltegian dauden produktuen informazioa eta saiatu berriro");
                         break;
                     }
 
