@@ -28,9 +28,7 @@ public class menu {
                     produktuak p = new produktuak(izena, empresa, ref);
                     int reslt = p.erreferentziaKomprobatu(ref);
                     if (reslt == 1) {
-                        System.out.println("sartu produktua hoztea bearrezkoa den ala ez (true/false)");
-                        boolean hoztea = sc.nextBoolean();
-                        sc.nextLine();
+                        boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
                         iragankorrak ir = new iragankorrak(ref, izena, empresa, hoztea);
                         boolean sortu = ir.produktuaSortu(ir);
                         if (sortu) {
@@ -39,9 +37,8 @@ public class menu {
                             System.out.println("produktua ez da sortu, saiatu berriro");
                         }
                     } else if (reslt == 2) {
-                        System.out.println("sartu produktua kontserba den ala ez (true/false)");
-                        boolean kontserba = sc.nextBoolean();
-                        sc.nextLine();
+                        boolean kontserba = laguntzaileak.true_false("sartu produktua kontserba den ala ez (b/e)");
+
                         ez_iragankorrak ez = new ez_iragankorrak(ref, izena, empresa, kontserba);
                         boolean sortu = ez.produktuaSortu(ez);
                         if (sortu) {
@@ -50,10 +47,8 @@ public class menu {
                             System.out.println("produktua ez da sortu, saiatu berriro");
                         }
                     } else if (reslt == 3) {
-                        System.out.println("sartu produktua hoztea bearrezkoa den ala ez (true/false)");
-                        boolean hoztea = sc.nextBoolean();
-                        sc.nextLine();
-                        System.out.println("sartu produktuaren hezetazu maximoa");
+                        boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
+                        System.out.println("sartu produktuaren hezetasun maximoa");
                         int hezetasunmax = sc.nextInt();
                         sc.nextLine();
                         erdi_iragankorrak er = new erdi_iragankorrak(ref, izena, empresa, hoztea, hezetasunmax);
@@ -86,9 +81,7 @@ public class menu {
 
                         switch (tipo) {
                             case 1:
-                                System.out.println("Hoztea beharrezkoa da? (true/false):");
-                                boolean hoztu = sc.nextBoolean();
-                                sc.nextLine();
+                                boolean hoztu = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
 
                                 iragankorrak ir = new iragankorrak(id_producto, refe, izenBerria, enpresaBerria, hoztu);
                                 if (ir.produktuaAldatu(ir)) {
@@ -99,9 +92,7 @@ public class menu {
                                 break;
 
                             case 2:
-                                System.out.println("Kontserba da? (true/false):");
-                                boolean kontserba = sc.nextBoolean();
-                                sc.nextLine();
+                                boolean kontserba = laguntzaileak.true_false("Kontserba da (b/e)");
 
                                 ez_iragankorrak ez = new ez_iragankorrak(id_producto, refe, izenBerria, enpresaBerria,
                                         kontserba);
@@ -113,9 +104,7 @@ public class menu {
                                 break;
 
                             case 3:
-                                System.out.println("Hoztea beharrezkoa da? (true/false):");
-                                boolean hoztuErdi = sc.nextBoolean();
-                                sc.nextLine();
+                                boolean hoztuErdi = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
                                 System.out.println("Zein da hezetasun maximoa?:");
                                 int hezetasuna = sc.nextInt();
                                 sc.nextLine();
@@ -397,7 +386,7 @@ public class menu {
                     if (!stockOndo) {
                         System.out.println(
                                 "Errorea: Ez dago stock nahikorik biltegian edo produktua ez dago biltegi honetan.");
-                                System.out.println(
+                        System.out.println(
                                 "Comprobatu biltegian dauden produktuen informazioa eta saiatu berriro");
                         break;
                     }
@@ -514,27 +503,29 @@ public class menu {
                         produktuak p = new produktuak(izena, empresa, referencia);
                         int reslt = p.erreferentziaKomprobatu(referencia);
 
+                        while (reslt == 0) {
+                            System.out.println("Erreferentzia gaizki sartu duzu, saiatu berriro mesedez:");
+                            referencia = sc.nextLine();
+                            p = new produktuak(izena, empresa, referencia);
+                            reslt = p.erreferentziaKomprobatu(referencia);
+                        }
+
                         if (reslt == 1) {
-                            System.out.println("Sartu produktua hoztea beharrezkoa den ala ez (true/false):");
-                            boolean hoztea = sc.nextBoolean();
-                            sc.nextLine();
+                            boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
 
                             iragankorrak ir = new iragankorrak(referencia, izena, empresa, hoztea);
                             if (ir.produktuaSortu(ir))
                                 System.out.println("Produktua ondo sortu da.");
 
                         } else if (reslt == 2) {
-                            System.out.println("Sartu produktua kontserba den ala ez (true/false):");
-                            boolean kontserba = sc.nextBoolean();
-                            sc.nextLine();
+                            boolean kontserba = laguntzaileak.true_false("kontserba da? (b/e)");
 
                             ez_iragankorrak ez = new ez_iragankorrak(referencia, izena, empresa, kontserba);
                             if (ez.produktuaSortu(ez))
                                 System.out.println("Produktua ondo sortu da.");
 
                         } else if (reslt == 3) {
-                            System.out.println("Sartu produktua hoztea beharrezkoa den ala ez (true/false):");
-                            boolean hoztea = sc.nextBoolean();
+                            boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
                             System.out.println("Sartu produktuaren hezetasun maximoa:");
                             int hezetasunmax = sc.nextInt();
                             sc.nextLine();

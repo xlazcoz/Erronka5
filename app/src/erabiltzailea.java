@@ -92,7 +92,7 @@ public class erabiltzailea {
         }
     }
 
-    public String erabiltzaileaIdentificatu(erabiltzailea erab) {
+    public void erabiltzaileaIdentifikatuEtaBaimenaEzarri() {
 
         String sql = "{call erabiltzaile_logina(?, ?, ?)}";
 
@@ -100,8 +100,8 @@ public class erabiltzailea {
                 Connection conn = konexioa.getKonexioa();
                 CallableStatement cstmt = conn.prepareCall(sql)) {
 
-            cstmt.setString(1, erab.izena);
-            cstmt.setString(2, erab.pasahitza);
+            cstmt.setString(1, this.izena);
+            cstmt.setString(2, this.pasahitza);
             cstmt.registerOutParameter(3, Types.VARCHAR);
 
             cstmt.execute();
@@ -109,15 +109,13 @@ public class erabiltzailea {
 
             if (rolObtenido != null) {
                 System.out.println("Acceso exitoso. Rol: " + rolObtenido);
-                return rolObtenido;
+                this.baimena = rolObtenido;
             } else {
                 System.out.println("Credenciales incorrectas");
-                return "";
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
     }
 
