@@ -10,12 +10,18 @@ public class donazioak {
     int produktua;
     String produktuaren_izena;
 
+    /**
+     * Donazio berri bat sortzeko konstruktorea.
+     */
     public donazioak(String donatzailea, LocalDate donazioarendata, int produktua) {
         this.donatzailea = donatzailea;
         this.donazioarendata = donazioarendata;
         this.produktua = produktua;
     }
 
+    /**
+     * Donazio objektu bat itzultzen duen beste konstruktorea.
+     */
     public donazioak(int id_donazioa, String donatzailea, LocalDate donazioarendata, String produktuaren_izena) {
         this.id_donazioa = id_donazioa;
         this.donatzailea = donatzailea;
@@ -23,6 +29,9 @@ public class donazioak {
         this.produktuaren_izena = produktuaren_izena;
     }
 
+    /**
+     * Donazio objektua identifikatzailearekin sortzen du.
+     */
     public donazioak(int id_donazioa, int id_donatzailea, LocalDate donazioarendata, int produktua) {
         this.id_donazioa = id_donazioa;
         this.id_donatzailea = id_donatzailea;
@@ -30,6 +39,9 @@ public class donazioak {
         this.produktua = produktua;
     }
 
+    /**
+     * Donazio berria datu-basean gordetzen du.
+     */
     public boolean donazioaSortuIDarekin(donazioak d) {
         String sql = "{call donazioa_sortu(?, ?, ?)}";
 
@@ -50,6 +62,9 @@ public class donazioak {
         }
     }
 
+    /**
+     * Donazioaren datuak eguneratzen ditu datu-basean.
+     */
     public boolean donazioaAldatu(donazioak d) {
         String sql = "{call donazioa_aldatu(?, ?, ?, ?)}";
 
@@ -71,6 +86,9 @@ public class donazioak {
         }
     }
 
+    /**
+     * Donazio bat datu-baseatik ezabatzen du.
+     */
     public boolean donazioaEzabatu(int id_donazioa) {
         String sql = "{call donazioa_borratu(?)}";
 
@@ -89,6 +107,9 @@ public class donazioak {
         }
     }
 
+    /**
+     * Donazioen zerrenda datu-baseatik hartzen du.
+     */
     public ArrayList<donazioak> donazioaBistaratu(int biltegia) {
         String sql = "{call donazioak_ikusi()}";
         ArrayList<donazioak> dList = new ArrayList<donazioak>();
@@ -117,6 +138,9 @@ public class donazioak {
         }
     }
 
+    /**
+     * Donatzaileen lista kontsolan erakusten du.
+     */
     public void donatzaileakBistaratu() {
         String sql = "{call donatzaileak_ikusi()}";
         try (

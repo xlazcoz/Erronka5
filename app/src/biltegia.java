@@ -6,12 +6,18 @@ public class biltegia {
     String izena;
     String kokapena;
 
+    /**
+     * Biltegi baten objektua sortzen duen konstruktorea.
+     */
     public biltegia(Integer kodea_biltegia, String izena, String kokapena) {
         this.kodea_biltegia = kodea_biltegia;
         this.izena = izena;
         this.kokapena = kokapena;
     }
 
+    /**
+     * Agortutako produktuen zerrenda bueltatzen du.
+     */
     public ArrayList<produktuBiltegia> agortutakoProduktuak() {
         String sql = "{call agprtutako_produktuak_ikusi()}";
 
@@ -39,6 +45,9 @@ public class biltegia {
         }
     }
 
+    /**
+     * Donazio puntu 0 duten produktuen zerrenda bueltatzen du.
+     */
     public ArrayList<produktuak> donazio0() {
         String sql = "{call donazio0_produktuak_ikusi()}";
 
@@ -65,6 +74,9 @@ public class biltegia {
         }
     }
 
+    /**
+     * Biltegi bateko stock maximoa duen produktua itzultzen du.
+     */
     public produktuak StockMax(int biltegia) {
         String sql = "{call Stock_Max(?)}";
 
@@ -93,6 +105,9 @@ public class biltegia {
         return null;
     }
 
+    /**
+     * Biltegi baten kokapena konprobatu eta itzultzen du.
+     */
     public String biltegiaKomprobatu(int biltegia) {
         String sql = "{call biltegi_Komprobatzen(?, ?)}";
 
@@ -120,6 +135,9 @@ public class biltegia {
         }
     }
 
+    /**
+     * Biltegi guztiak datu-baseatik bistaratzeko itzultzen ditu.
+     */
     public ArrayList<biltegia> biltegiakBistaratu() {
         String sql = "{call biltegiak_ikusi()}";
         ArrayList<biltegia> blist = new ArrayList<biltegia>();

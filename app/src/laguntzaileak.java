@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class laguntzaileak {
 
+    /**
+     * Bai edo ez erantzuna jasotzen duen laguntzailea.
+     */
     public static boolean true_false(String textua) {
         System.out.println(textua);
 

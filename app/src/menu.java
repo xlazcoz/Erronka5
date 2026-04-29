@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class menu {
 
+    /**
+     * Produktuen kudeaketa menu bat erakusten du.
+     */
     public static void menuProductos() {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -162,6 +165,9 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Erabiltzaileen kudeaketa menu bat erakusten du.
+     */
     public static void menuErabiltzaileak(erabiltzailea e) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -251,6 +257,9 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Biltegiaren menua eta bertako informazioa kudeatzen du.
+     */
     public static void menuBiltegia(erabiltzailea e, int biltegia) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -348,6 +357,9 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Irteeren kudeaketa menu bat erakusten du.
+     */
     public static void menuIrteerak(int biltegia) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -472,6 +484,9 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Donazioen kudeaketa menu bat erakusten du.
+     */
     public static void menuDonazioa(int biltegia) {
         Scanner sc = new Scanner(System.in);
         int menua;

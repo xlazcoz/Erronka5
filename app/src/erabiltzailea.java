@@ -9,12 +9,18 @@ public class erabiltzailea {
     String baimena;
     int baimena_id;
 
+    /**
+     * Erabiltzaile berri bat sortzeko konstruktorea.
+     */
     public erabiltzailea(String izena, String pasahitza, int baimena_id) {
         this.izena = izena;
         this.pasahitza = pasahitza;
         this.baimena_id = baimena_id;
     }
 
+    /**
+     * Erabiltzaile objektua ID eta informazioarekin sortzen du.
+     */
     public erabiltzailea(int id_erabiltzailea, String izena, String pasahitza, int baimena_id) {
         this.izena = izena;
         this.pasahitza = pasahitza;
@@ -22,17 +28,26 @@ public class erabiltzailea {
         this.id_erabiltzailea = id_erabiltzailea;
     }
 
+    /**
+     * Erabiltzaile objektua baimenarekin sortzen du.
+     */
     public erabiltzailea(int id_erabiltzailea, String izena, String baimena) {
         this.id_erabiltzailea = id_erabiltzailea;
         this.izena = izena;
         this.baimena = baimena;
     }
 
+    /**
+     * Erabiltzailea login informazioarekin sortzen du.
+     */
     public erabiltzailea(String izena, String pasahitza) {
         this.izena = izena;
         this.pasahitza = pasahitza;
     }
 
+    /**
+     * Erabiltzaile berria datu-basean gordetzen du.
+     */
     public boolean erabiltzaileaSortu(erabiltzailea erab) {
         String sql = "{call erabiltzailea_sortu(?, ?, ?)}";
 
@@ -53,6 +68,9 @@ public class erabiltzailea {
         }
     }
 
+    /**
+     * Erabiltzailearen datuak datu-basean aldatzen ditu.
+     */
     public boolean erabiltzaileaAldatu(erabiltzailea erab) {
         String sql = "{call erabiltzailea_aldatu(?, ?, ?, ?)}";
 
@@ -74,6 +92,9 @@ public class erabiltzailea {
         }
     }
 
+    /**
+     * Erabiltzaile bat datu-baseatik ezabatzeko metodoa.
+     */
     public boolean erabiltzaileaEzabatu(int id_erabiltzailea) {
         String sql = "{call erabiltzailea_borratu(?)}";
 
@@ -92,6 +113,9 @@ public class erabiltzailea {
         }
     }
 
+    /**
+     * Erabiltzailearen login egiaztatzen du eta baimena ezartzen du.
+     */
     public void erabiltzaileaIdentifikatuEtaBaimenaEzarri() {
 
         String sql = "{call erabiltzaile_logina(?, ?, ?)}";
@@ -119,6 +143,9 @@ public class erabiltzailea {
         }
     }
 
+    /**
+     * Erabiltzaile guztiak datu-baseatik irakurtzen ditu.
+     */
     public ArrayList<erabiltzailea> erabiltzaileakBistaratu() {
         String sql = "{call erabiltzaileak_ikusi()}";
         ArrayList<erabiltzailea> eList = new ArrayList<erabiltzailea>();

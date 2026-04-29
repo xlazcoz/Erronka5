@@ -7,6 +7,9 @@ public class produktuak {
     String izena;
     String empresa;
 
+    /**
+     * Produktu objektua datu guztiekin sortzen du.
+     */
     public produktuak(int id, String erreferentzia, String izena, String empresa) {
         this.id = id;
         this.erreferentzia = erreferentzia;
@@ -14,17 +17,26 @@ public class produktuak {
         this.empresa = empresa;
     }
 
+    /**
+     * Produktuaren ID eta izena duen konstruktorea.
+     */
     public produktuak(int id, String izena) {
         this.id = id;
         this.izena = izena;
     }
 
+    /**
+     * Produktu berri bat izen eta enpresarekin sortzen du.
+     */
     public produktuak(String erreferentzia, String izena, String empresa) {
         this.erreferentzia = erreferentzia;
         this.izena = izena;
         this.empresa = empresa;
     }
 
+    /**
+     * Produktuaren erreferentzia datu-baseatik bueltatzen du.
+     */
     public String erreferentziabueltatu(int id_produkto) {
         String sql = "{call produktu_erreferentzia(?, ?)}";
 
@@ -46,6 +58,9 @@ public class produktuak {
         }
     }
 
+    /**
+     * Produktuen zerrenda datu-baseatik jasotzen du.
+     */
     public ArrayList<produktuak> ProduktuakBistaratu() {
 
         String sql = "{call Produktuak_bistaratu()}";
@@ -73,6 +88,9 @@ public class produktuak {
         }
     }
 
+    /**
+     * Produktuaren erreferentzia motaren arabera kode bat itzultzen du.
+     */
     public int erreferentziaKomprobatu(String ref) {
 
         if (ref.matches("IR\\d{5}")) {
@@ -86,6 +104,9 @@ public class produktuak {
 
     }
 
+    /**
+     * Produktu bat datu-baseatik ezabatzeko metodoa.
+     */
     public boolean produktuaEzabatu(int id_erabiltzailea) {
         String sql = "{call produktua_borratu(?)}";
 
@@ -104,6 +125,9 @@ public class produktuak {
         }
     }
 
+    /**
+     * Produktu bat izen eta enpresa bidez bilatzen du.
+     */
     public int ProduktuaKomprobatu(String nuevonombre, String nuevaempresa) {
         produktuak comprobar = new produktuak(null, null, null);
         ArrayList<produktuak> lista = comprobar.ProduktuakBistaratu();

@@ -5,6 +5,9 @@ public class erdi_iragankorrak extends produktuak {
     boolean hoztu;
     int hezetasunmax;
 
+    /**
+     * Erdi iragankor produktua sortzeko konstruktorea.
+     */
     public erdi_iragankorrak(int id, String erreferentzia, String izena, String empresa, boolean hoztu,
             int hezetasunmax) {
         super(id, erreferentzia, izena, empresa);
@@ -12,12 +15,18 @@ public class erdi_iragankorrak extends produktuak {
         this.hezetasunmax = hezetasunmax;
     }
 
+    /**
+     * Erdi iragankor produktu berria sortzeko konstruktorea.
+     */
     public erdi_iragankorrak(String erreferentzia, String izena, String empresa, boolean hoztu, int hezetasunmax) {
         super(erreferentzia, izena, empresa);
         this.hoztu = hoztu;
         this.hezetasunmax = hezetasunmax;
     }
 
+    /**
+     * Erdi iragankor produktua datu-basean sortzen du.
+     */
     public boolean produktuaSortu(erdi_iragankorrak er) {
         String sql = "{call erdi_iragankorra_sortu(?, ?, ?, ?, ?)}";
 
@@ -40,6 +49,9 @@ public class erdi_iragankorrak extends produktuak {
         }
     }
 
+    /**
+     * Erdi iragankor produktua datu-basean eguneratzen du.
+     */
     public boolean produktuaAldatu(erdi_iragankorrak er) {
         String sql = "{call erdi_iragankorra_aldatu(?, ?, ?, ?, ?)}";
 

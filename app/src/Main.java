@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    /**
+     * Programa hasten duen metodoa.
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String bil = "";
@@ -57,6 +60,9 @@ public class Main {
         sc.close();
     }
 
+    /**
+     * Erabiltzailearen roletik menua erakusten duen metodoa.
+     */
     public void aurrenekomenua(erabiltzailea e, int biltegia) {
         Scanner sc = new Scanner(System.in);
 

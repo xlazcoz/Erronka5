@@ -5,11 +5,17 @@ public class baimena {
     int id;
     String izena;
 
+    /**
+     * Baimen objektu bat sortzen du.
+     */
     public baimena(int id, String izena) {
         this.id = id;
         this.izena = izena;
     }
 
+    /**
+     * Baimenen zerrenda datu-baseatik bueltatzen du.
+     */
     public ArrayList<baimena> erakutsiBaimenak() {
 
         String sql = "{call baimenak_ikusi()}";

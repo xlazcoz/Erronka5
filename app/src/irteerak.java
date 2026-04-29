@@ -10,12 +10,18 @@ public class irteerak {
     int produktua;
     String produktuaren_izena;
 
+    /**
+     * Irteera berri bat sortzeko konstruktorea.
+     */
     public irteerak(String helmuga, LocalDate bidalketadata, int produktua) {
         this.helmuga = helmuga;
         this.bidalketadata = bidalketadata;
         this.produktua = produktua;
     }
 
+    /**
+     * Irteera objektu bat informazioarekin sortzen du.
+     */
     public irteerak(int id_irteera, String helmuga, LocalDate bidalketadata, String produktuaren_izena) {
         this.id_irteera = id_irteera;
         this.helmuga = helmuga;
@@ -23,6 +29,9 @@ public class irteerak {
         this.produktuaren_izena = produktuaren_izena;
     }
 
+    /**
+     * Irteera objektua ID eta bestelako datuekin sortzen du.
+     */
     public irteerak(int id_irteera, int id_helmuga, LocalDate bidalketadata, int produktua) {
         this.id_irteera = id_irteera;
         this.id_helmuga = id_helmuga;
@@ -30,6 +39,9 @@ public class irteerak {
         this.produktua = produktua;
     }
 
+    /**
+     * Irteera berria datu-basean sortzen du.
+     */
     public boolean irteeraSortu(irteerak i) {
         String sql = "{call irteera_sortu(?, ?, ?)}";
 
@@ -50,6 +62,9 @@ public class irteerak {
         }
     }
 
+    /**
+     * Irteera baten informazioa datu-basean eguneratzen du.
+     */
     public boolean irteeraAldatu(irteerak i) {
         String sql = "{call irteera_aldatu(?, ?, ?, ?)}";
 
@@ -71,6 +86,9 @@ public class irteerak {
         }
     }
 
+    /**
+     * Irteera bat datu-baseatik ezabatzeko metodoa.
+     */
     public boolean irteeraEzabatu(int id_irteera) {
         String sql = "{call irteera_borratu(?)}";
 
@@ -89,6 +107,9 @@ public class irteerak {
         }
     }
 
+    /**
+     * Irteeren zerrenda datu-baseatik irakurtzen du.
+     */
     public ArrayList<irteerak> irteerakBistaratu(int biltegia) {
         String sql = "{call irteerak_ikusi()}";
         ArrayList<irteerak> iList = new ArrayList<irteerak>();

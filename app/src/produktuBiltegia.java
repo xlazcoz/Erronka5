@@ -11,6 +11,9 @@ public class produktuBiltegia {
     int kantitatea;
     LocalDate iraungintze_data;
 
+    /**
+     * Produktu baten biltegi egoera deskribatzen duen konstruktorea.
+     */
     public produktuBiltegia(int id_produktua, int id_biltegia, int pasilokozen, int kokapenkodea, int kantitatea,
             LocalDate iraungintze_data) {
         this.id_produktua = id_produktua;
@@ -21,12 +24,18 @@ public class produktuBiltegia {
         this.iraungintze_data = iraungintze_data;
     }
 
+    /**
+     * Produktu baten stock informazioa gordetzen duen konstruktorea.
+     */
     public produktuBiltegia(int kantitatea, String izena, int id_produktua) {
         this.kantitatea = kantitatea;
         this.izena = izena;
         this.id_produktua = id_produktua;
     }
 
+    /**
+     * Produktu bat biltegian sartzen du.
+     */
     public boolean produktuaBiltegianSartu(produktuBiltegia pb) {
         String sql = "{call produktua_Biltegian_Sartu(?, ?, ?, ?, ?, ?)}";
 
@@ -50,6 +59,9 @@ public class produktuBiltegia {
         }
     }
 
+    /**
+     * Produktu bat biltegitik ezabatzeko metodoa.
+     */
     public boolean produktuaEzabatu(int id_producto, int biltegia) {
         String sql = "{call prduktua_biltegitik_borratu(?, ?)}";
 
@@ -69,6 +81,9 @@ public class produktuBiltegia {
         }
     }
 
+    /**
+     * Produktu bat biltegian eguneratzen du.
+     */
     public boolean ProduktuaBiltegianAldatu(produktuBiltegia pb) {
         String sql = "{call Produktua_biltegian_aldatu(?, ?, ?, ?, ?, ?)}";
         try (
@@ -91,6 +106,9 @@ public class produktuBiltegia {
         }
     }
 
+    /**
+     * Produktuaren stock kantitatea murrizten du biltegian.
+     */
     public boolean stockaKendu(int id_produktua, int id_biltegia, int atera_kantitatea) {
         String sql = "{call stocka_kendu(?, ?, ?)}";
 
@@ -112,6 +130,9 @@ public class produktuBiltegia {
     }
 
     
+    /**
+     * Biltegi baten produktuak zerrendatzen ditu.
+     */
     public ArrayList<produktuBiltegia> biltegikoProduktuakBistaratu(int id_biltegia) {
         String sql = "{call biltegiko_produktuak_ikusi(?)}";
         ArrayList<produktuBiltegia> lista = new ArrayList<>();

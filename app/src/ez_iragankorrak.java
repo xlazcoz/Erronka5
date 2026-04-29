@@ -3,17 +3,26 @@ import java.sql.*;
 public class ez_iragankorrak extends produktuak {
     boolean kontserba;
 
+    /**
+     * Ez iragankor produktua sortzeko konstruktorea.
+     */
     public ez_iragankorrak(int id, String erreferentzia, String izena, String empresa, boolean kontserba) {
         super(id, erreferentzia, izena, empresa);
         this.kontserba = kontserba;
     }
 
+    /**
+     * Ez iragankor produktu berria sortzeko konstruktorea.
+     */
     public ez_iragankorrak(String erreferentzia, String izena, String empresa,
             boolean kontserba) {
         super(erreferentzia, izena, empresa);
         this.kontserba = kontserba;
     }
 
+    /**
+     * Ez iragankor produktua datu-basean sortzen du.
+     */
     public boolean produktuaSortu(ez_iragankorrak ez) {
         String sql = "{call ez_iragankorra_sortu(?, ?, ?, ?)}";
 
@@ -36,6 +45,9 @@ public class ez_iragankorrak extends produktuak {
 
     }
 
+    /**
+     * Ez iragankor produktua datu-basean eguneratzen du.
+     */
     public boolean produktuaAldatu(ez_iragankorrak ez) {
         String sql = "{call ez_iragankorra_aldatu(?, ?, ?, ?)}";
 
