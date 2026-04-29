@@ -2,6 +2,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Erabiltzailea klasea erabiltzaileen informazioa kudeatzen du.
+ */
 public class erabiltzailea {
     int id_erabiltzailea;
     String izena;
@@ -9,12 +12,25 @@ public class erabiltzailea {
     String baimena;
     int baimena_id;
 
+    /**
+     * Erabiltzailea objektua sortzen du.
+     * @param izena erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     * @param baimena_id baimenaren ID
+     */
     public erabiltzailea(String izena, String pasahitza, int baimena_id) {
         this.izena = izena;
         this.pasahitza = pasahitza;
         this.baimena_id = baimena_id;
     }
 
+    /**
+     * Erabiltzailea objektua sortzen du.
+     * @param id_erabiltzailea erabiltzailearen ID
+     * @param izena erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     * @param baimena_id baimenaren ID
+     */
     public erabiltzailea(int id_erabiltzailea, String izena, String pasahitza, int baimena_id) {
         this.izena = izena;
         this.pasahitza = pasahitza;
@@ -22,17 +38,33 @@ public class erabiltzailea {
         this.id_erabiltzailea = id_erabiltzailea;
     }
 
+    /**
+     * Erabiltzailea objektua sortzen du.
+     * @param id_erabiltzailea erabiltzailearen ID
+     * @param izena erabiltzailearen izena
+     * @param baimena erabiltzailearen baimena
+     */
     public erabiltzailea(int id_erabiltzailea, String izena, String baimena) {
         this.id_erabiltzailea = id_erabiltzailea;
         this.izena = izena;
         this.baimena = baimena;
     }
 
+    /**
+     * Erabiltzailea objektua sortzen du.
+     * @param izena erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     */
     public erabiltzailea(String izena, String pasahitza) {
         this.izena = izena;
         this.pasahitza = pasahitza;
     }
 
+    /**
+     * Erabiltzailea sortzen du.
+     * @param erab erabiltzailea objektua
+     * @return true ondo joan bada
+     */
     public boolean erabiltzaileaSortu(erabiltzailea erab) {
         String sql = "{call erabiltzailea_sortu(?, ?, ?)}";
 
@@ -53,6 +85,11 @@ public class erabiltzailea {
         }
     }
 
+    /**
+     * Erabiltzailea aldatzen du.
+     * @param erab erabiltzailea objektua
+     * @return true ondo joan bada
+     */
     public boolean erabiltzaileaAldatu(erabiltzailea erab) {
         String sql = "{call erabiltzailea_aldatu(?, ?, ?, ?)}";
 
@@ -74,6 +111,11 @@ public class erabiltzailea {
         }
     }
 
+    /**
+     * Erabiltzailea ezabatzen du.
+     * @param id_erabiltzailea erabiltzailearen ID
+     * @return true ondo joan bada
+     */
     public boolean erabiltzaileaEzabatu(int id_erabiltzailea) {
         String sql = "{call erabiltzailea_borratu(?)}";
 
@@ -92,7 +134,10 @@ public class erabiltzailea {
         }
     }
 
-    public String erabiltzaileaIdentificatu(erabiltzailea erab) {
+    /**
+     * Erabiltzailea identifikatzen eta baimena ezartzen du.
+     */
+    public void erabiltzaileaIdentifikatuEtaBaimenaEzarri() {
 
         String sql = "{call erabiltzaile_logina(?, ?, ?)}";
 
@@ -100,8 +145,8 @@ public class erabiltzailea {
                 Connection conn = konexioa.getKonexioa();
                 CallableStatement cstmt = conn.prepareCall(sql)) {
 
-            cstmt.setString(1, erab.izena);
-            cstmt.setString(2, erab.pasahitza);
+            cstmt.setString(1, this.izena);
+            cstmt.setString(2, this.pasahitza);
             cstmt.registerOutParameter(3, Types.VARCHAR);
 
             cstmt.execute();
@@ -109,18 +154,20 @@ public class erabiltzailea {
 
             if (rolObtenido != null) {
                 System.out.println("Acceso exitoso. Rol: " + rolObtenido);
-                return rolObtenido;
+                this.baimena = rolObtenido;
             } else {
                 System.out.println("Credenciales incorrectas");
-                return "";
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
     }
 
+    /**
+     * Erabiltzaileak bistaratzen ditu.
+     * @return erabiltzaileen zerrenda
+     */
     public ArrayList<erabiltzailea> erabiltzaileakBistaratu() {
         String sql = "{call erabiltzaileak_ikusi()}";
         ArrayList<erabiltzailea> eList = new ArrayList<erabiltzailea>();

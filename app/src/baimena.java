@@ -1,15 +1,27 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Baimena klasea baimenen informazioa kudeatzen du.
+ */
 public class baimena {
     int id;
     String izena;
 
+    /**
+     * Baimena objektua sortzen du.
+     * @param id baimenaren ID
+     * @param izena baimenaren izena
+     */
     public baimena(int id, String izena) {
         this.id = id;
         this.izena = izena;
     }
 
+    /**
+     * Baimen guztiak erakusten ditu.
+     * @return baimenen zerrenda
+     */
     public ArrayList<baimena> erakutsiBaimenak() {
 
         String sql = "{call baimenak_ikusi()}";

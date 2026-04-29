@@ -1,17 +1,30 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Biltegia klasea biltegien informazioa kudeatzen du.
+ */
 public class biltegia {
     Integer kodea_biltegia;
     String izena;
     String kokapena;
 
+    /**
+     * Biltegia objektua sortzen du.
+     * @param kodea_biltegia biltegiaren kodea
+     * @param izena biltegiaren izena
+     * @param kokapena biltegiaren kokapena
+     */
     public biltegia(Integer kodea_biltegia, String izena, String kokapena) {
         this.kodea_biltegia = kodea_biltegia;
         this.izena = izena;
         this.kokapena = kokapena;
     }
 
+    /**
+     * Agortutako produktuak erakusten ditu.
+     * @return agortutako produktuen zerrenda
+     */
     public ArrayList<produktuBiltegia> agortutakoProduktuak() {
         String sql = "{call agprtutako_produktuak_ikusi()}";
 
@@ -39,6 +52,10 @@ public class biltegia {
         }
     }
 
+    /**
+     * Donazioa 0 diren produktuak erakusten ditu.
+     * @return donazioa 0 diren produktuen zerrenda
+     */
     public ArrayList<produktuak> donazio0() {
         String sql = "{call donazio0_produktuak_ikusi()}";
 
@@ -65,6 +82,11 @@ public class biltegia {
         }
     }
 
+    /**
+     * Biltegi batean stock maximoa duen produktua erakusten du.
+     * @param biltegia biltegiaren ID
+     * @return stock maximoa duen produktua
+     */
     public produktuak StockMax(int biltegia) {
         String sql = "{call Stock_Max(?)}";
 
@@ -93,6 +115,11 @@ public class biltegia {
         return null;
     }
 
+    /**
+     * Biltegi bat konprobatzen du.
+     * @param biltegia biltegiaren ID
+     * @return biltegiaren kokapena
+     */
     public String biltegiaKomprobatu(int biltegia) {
         String sql = "{call biltegi_Komprobatzen(?, ?)}";
 
@@ -120,6 +147,10 @@ public class biltegia {
         }
     }
 
+    /**
+     * Biltegi guztiak bistaratzen ditu.
+     * @return biltegien zerrenda
+     */
     public ArrayList<biltegia> biltegiakBistaratu() {
         String sql = "{call biltegiak_ikusi()}";
         ArrayList<biltegia> blist = new ArrayList<biltegia>();

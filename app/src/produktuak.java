@@ -1,12 +1,22 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Produktuak klasea produktuen informazioa kudeatzen du.
+ */
 public class produktuak {
     int id;
     String erreferentzia;
     String izena;
     String empresa;
 
+    /**
+     * Produktuak objektua sortzen du.
+     * @param id produktua ID
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
+     */
     public produktuak(int id, String erreferentzia, String izena, String empresa) {
         this.id = id;
         this.erreferentzia = erreferentzia;
@@ -14,17 +24,33 @@ public class produktuak {
         this.empresa = empresa;
     }
 
+    /**
+     * Produktuak objektua sortzen du.
+     * @param id produktua ID
+     * @param izena izena
+     */
     public produktuak(int id, String izena) {
         this.id = id;
         this.izena = izena;
     }
 
+    /**
+     * Produktuak objektua sortzen du.
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
+     */
     public produktuak(String erreferentzia, String izena, String empresa) {
         this.erreferentzia = erreferentzia;
         this.izena = izena;
         this.empresa = empresa;
     }
 
+    /**
+     * Produktuaren erreferentzia bueltatzen du.
+     * @param id_produkto produktua ID
+     * @return erreferentzia
+     */
     public String erreferentziabueltatu(int id_produkto) {
         String sql = "{call produktu_erreferentzia(?, ?)}";
 
@@ -46,6 +72,10 @@ public class produktuak {
         }
     }
 
+    /**
+     * Produktuak bistaratzen ditu.
+     * @return produktuen zerrenda
+     */
     public ArrayList<produktuak> ProduktuakBistaratu() {
 
         String sql = "{call Produktuak_bistaratu()}";
@@ -73,6 +103,11 @@ public class produktuak {
         }
     }
 
+    /**
+     * Erreferentzia konprobatzen du.
+     * @param ref erreferentzia
+     * @return 1,2,3 edo 0
+     */
     public int erreferentziaKomprobatu(String ref) {
 
         if (ref.matches("IR\\d{5}")) {
@@ -86,6 +121,11 @@ public class produktuak {
 
     }
 
+    /**
+     * Produktua ezabatzen du.
+     * @param id_erabiltzailea produktua ID
+     * @return true ondo joan bada
+     */
     public boolean produktuaEzabatu(int id_erabiltzailea) {
         String sql = "{call produktua_borratu(?)}";
 
@@ -104,6 +144,12 @@ public class produktuak {
         }
     }
 
+    /**
+     * Produktua konprobatzen du.
+     * @param nuevonombre izena
+     * @param nuevaempresa empresa
+     * @return produktua ID edo 0
+     */
     public int ProduktuaKomprobatu(String nuevonombre, String nuevaempresa) {
         produktuak comprobar = new produktuak(null, null, null);
         ArrayList<produktuak> lista = comprobar.ProduktuakBistaratu();

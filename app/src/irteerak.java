@@ -2,6 +2,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.*;
 
+/**
+ * Irteerak klasea irteeren informazioa kudeatzen du.
+ */
 public class irteerak {
     int id_irteera;
     String helmuga;
@@ -10,12 +13,25 @@ public class irteerak {
     int produktua;
     String produktuaren_izena;
 
+    /**
+     * Irteerak objektua sortzen du.
+     * @param helmuga helmuga
+     * @param bidalketadata bidalketa data
+     * @param produktua produktua
+     */
     public irteerak(String helmuga, LocalDate bidalketadata, int produktua) {
         this.helmuga = helmuga;
         this.bidalketadata = bidalketadata;
         this.produktua = produktua;
     }
 
+    /**
+     * Irteerak objektua sortzen du.
+     * @param id_irteera irteera ID
+     * @param helmuga helmuga
+     * @param bidalketadata bidalketa data
+     * @param produktuaren_izena produktuaren izena
+     */
     public irteerak(int id_irteera, String helmuga, LocalDate bidalketadata, String produktuaren_izena) {
         this.id_irteera = id_irteera;
         this.helmuga = helmuga;
@@ -23,6 +39,13 @@ public class irteerak {
         this.produktuaren_izena = produktuaren_izena;
     }
 
+    /**
+     * Irteerak objektua sortzen du.
+     * @param id_irteera irteera ID
+     * @param id_helmuga helmuga ID
+     * @param bidalketadata bidalketa data
+     * @param produktua produktua
+     */
     public irteerak(int id_irteera, int id_helmuga, LocalDate bidalketadata, int produktua) {
         this.id_irteera = id_irteera;
         this.id_helmuga = id_helmuga;
@@ -30,6 +53,11 @@ public class irteerak {
         this.produktua = produktua;
     }
 
+    /**
+     * Irteera sortzen du.
+     * @param i irteerak objektua
+     * @return true ondo joan bada
+     */
     public boolean irteeraSortu(irteerak i) {
         String sql = "{call irteera_sortu(?, ?, ?)}";
 
@@ -50,6 +78,11 @@ public class irteerak {
         }
     }
 
+    /**
+     * Irteera aldatzen du.
+     * @param i irteerak objektua
+     * @return true ondo joan bada
+     */
     public boolean irteeraAldatu(irteerak i) {
         String sql = "{call irteera_aldatu(?, ?, ?, ?)}";
 
@@ -71,6 +104,11 @@ public class irteerak {
         }
     }
 
+    /**
+     * Irteera ezabatzen du.
+     * @param id_irteera irteera ID
+     * @return true ondo joan bada
+     */
     public boolean irteeraEzabatu(int id_irteera) {
         String sql = "{call irteera_borratu(?)}";
 
@@ -89,6 +127,11 @@ public class irteerak {
         }
     }
 
+    /**
+     * Irteerak bistaratzen ditu.
+     * @param biltegia biltegiaren ID
+     * @return irteeren zerrenda
+     */
     public ArrayList<irteerak> irteerakBistaratu(int biltegia) {
         String sql = "{call irteerak_ikusi()}";
         ArrayList<irteerak> iList = new ArrayList<irteerak>();

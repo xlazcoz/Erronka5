@@ -2,8 +2,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Menu klasea menua kudeatzen du.
+ */
 public class menu {
 
+    /**
+     * Produktuen menua bistaratzen du.
+     */
     public static void menuProductos() {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -28,9 +34,7 @@ public class menu {
                     produktuak p = new produktuak(izena, empresa, ref);
                     int reslt = p.erreferentziaKomprobatu(ref);
                     if (reslt == 1) {
-                        System.out.println("sartu produktua hoztea bearrezkoa den ala ez (true/false)");
-                        boolean hoztea = sc.nextBoolean();
-                        sc.nextLine();
+                        boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
                         iragankorrak ir = new iragankorrak(ref, izena, empresa, hoztea);
                         boolean sortu = ir.produktuaSortu(ir);
                         if (sortu) {
@@ -39,9 +43,8 @@ public class menu {
                             System.out.println("produktua ez da sortu, saiatu berriro");
                         }
                     } else if (reslt == 2) {
-                        System.out.println("sartu produktua kontserba den ala ez (true/false)");
-                        boolean kontserba = sc.nextBoolean();
-                        sc.nextLine();
+                        boolean kontserba = laguntzaileak.true_false("sartu produktua kontserba den ala ez (b/e)");
+
                         ez_iragankorrak ez = new ez_iragankorrak(ref, izena, empresa, kontserba);
                         boolean sortu = ez.produktuaSortu(ez);
                         if (sortu) {
@@ -50,10 +53,8 @@ public class menu {
                             System.out.println("produktua ez da sortu, saiatu berriro");
                         }
                     } else if (reslt == 3) {
-                        System.out.println("sartu produktua hoztea bearrezkoa den ala ez (true/false)");
-                        boolean hoztea = sc.nextBoolean();
-                        sc.nextLine();
-                        System.out.println("sartu produktuaren hezetazu maximoa");
+                        boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
+                        System.out.println("sartu produktuaren hezetasun maximoa");
                         int hezetasunmax = sc.nextInt();
                         sc.nextLine();
                         erdi_iragankorrak er = new erdi_iragankorrak(ref, izena, empresa, hoztea, hezetasunmax);
@@ -86,9 +87,7 @@ public class menu {
 
                         switch (tipo) {
                             case 1:
-                                System.out.println("Hoztea beharrezkoa da? (true/false):");
-                                boolean hoztu = sc.nextBoolean();
-                                sc.nextLine();
+                                boolean hoztu = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
 
                                 iragankorrak ir = new iragankorrak(id_producto, refe, izenBerria, enpresaBerria, hoztu);
                                 if (ir.produktuaAldatu(ir)) {
@@ -99,9 +98,7 @@ public class menu {
                                 break;
 
                             case 2:
-                                System.out.println("Kontserba da? (true/false):");
-                                boolean kontserba = sc.nextBoolean();
-                                sc.nextLine();
+                                boolean kontserba = laguntzaileak.true_false("Kontserba da (b/e)");
 
                                 ez_iragankorrak ez = new ez_iragankorrak(id_producto, refe, izenBerria, enpresaBerria,
                                         kontserba);
@@ -113,9 +110,7 @@ public class menu {
                                 break;
 
                             case 3:
-                                System.out.println("Hoztea beharrezkoa da? (true/false):");
-                                boolean hoztuErdi = sc.nextBoolean();
-                                sc.nextLine();
+                                boolean hoztuErdi = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
                                 System.out.println("Zein da hezetasun maximoa?:");
                                 int hezetasuna = sc.nextInt();
                                 sc.nextLine();
@@ -173,6 +168,10 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Erabiltzaileen menua bistaratzen du.
+     * @param e erabiltzailea
+     */
     public static void menuErabiltzaileak(erabiltzailea e) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -262,6 +261,11 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Biltegiaren menua bistaratzen du.
+     * @param e erabiltzailea
+     * @param biltegia biltegiaren ID
+     */
     public static void menuBiltegia(erabiltzailea e, int biltegia) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -271,6 +275,7 @@ public class menu {
                     "2. Produktuak 0 donaziokin \r\n" +
                     "3. Stock maximoa duen produktua \r\n" +
                     "4. Produktua biltegitik borratu \r\n" +
+                    "5. Biltegiko produktuak ikusi \r\n" +
                     "0. bueltatu ");
             menua = sc.nextInt();
             sc.nextLine();
@@ -328,6 +333,27 @@ public class menu {
                                 "Errorea: Ezin izan da produktua ezabatu biltegitik (agian ez da existitzen edo errorea egon da datu-basean).");
                     }
                     break;
+
+                case 5:
+                    produktuBiltegia pbInbentarioa = new produktuBiltegia(0, null, 0);
+                    ArrayList<produktuBiltegia> inbentarioa = pbInbentarioa.biltegikoProduktuakBistaratu(biltegia);
+
+                    if (inbentarioa == null) {
+                        System.out.println("Errorea: Ezin izan da datu-basearekin konektatu.");
+                    } else if (inbentarioa.isEmpty()) {
+                        System.out.println("Biltegi hau hutsik dago momentuan.");
+                    } else {
+                        System.out.println("\n--- BILTEGIKO INBENTARIOA ---");
+                        for (produktuBiltegia pDatu : inbentarioa) {
+                            System.out.println("ID: " + pDatu.id_produktua +
+                                    " | Izena: " + pDatu.izena +
+                                    " | Stock: " + pDatu.kantitatea +
+                                    " | Pasiloa: " + pDatu.pasilokozen +
+                                    " | Kokapena: " + pDatu.kokapenkodea +
+                                    " | Iraungintze data: " + pDatu.iraungintze_data);
+                        }
+                    }
+                    break;
                 case 0:
                     break;
                 default:
@@ -337,6 +363,10 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Irteeren menua bistaratzen du.
+     * @param biltegia biltegiaren ID
+     */
     public static void menuIrteerak(int biltegia) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -375,6 +405,8 @@ public class menu {
                     if (!stockOndo) {
                         System.out.println(
                                 "Errorea: Ez dago stock nahikorik biltegian edo produktua ez dago biltegi honetan.");
+                        System.out.println(
+                                "Comprobatu biltegian dauden produktuen informazioa eta saiatu berriro");
                         break;
                     }
 
@@ -459,6 +491,10 @@ public class menu {
         } while (menua != 0);
     }
 
+    /**
+     * Donazioen menua bistaratzen du.
+     * @param biltegia biltegiaren ID
+     */
     public static void menuDonazioa(int biltegia) {
         Scanner sc = new Scanner(System.in);
         int menua;
@@ -490,27 +526,29 @@ public class menu {
                         produktuak p = new produktuak(izena, empresa, referencia);
                         int reslt = p.erreferentziaKomprobatu(referencia);
 
+                        while (reslt == 0) {
+                            System.out.println("Erreferentzia gaizki sartu duzu, saiatu berriro mesedez:");
+                            referencia = sc.nextLine();
+                            p = new produktuak(izena, empresa, referencia);
+                            reslt = p.erreferentziaKomprobatu(referencia);
+                        }
+
                         if (reslt == 1) {
-                            System.out.println("Sartu produktua hoztea beharrezkoa den ala ez (true/false):");
-                            boolean hoztea = sc.nextBoolean();
-                            sc.nextLine();
+                            boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
 
                             iragankorrak ir = new iragankorrak(referencia, izena, empresa, hoztea);
                             if (ir.produktuaSortu(ir))
                                 System.out.println("Produktua ondo sortu da.");
 
                         } else if (reslt == 2) {
-                            System.out.println("Sartu produktua kontserba den ala ez (true/false):");
-                            boolean kontserba = sc.nextBoolean();
-                            sc.nextLine();
+                            boolean kontserba = laguntzaileak.true_false("kontserba da? (b/e)");
 
                             ez_iragankorrak ez = new ez_iragankorrak(referencia, izena, empresa, kontserba);
                             if (ez.produktuaSortu(ez))
                                 System.out.println("Produktua ondo sortu da.");
 
                         } else if (reslt == 3) {
-                            System.out.println("Sartu produktua hoztea beharrezkoa den ala ez (true/false):");
-                            boolean hoztea = sc.nextBoolean();
+                            boolean hoztea = laguntzaileak.true_false("sartu produktua hoztea bearrezkoa den ala ez (b/e)");
                             System.out.println("Sartu produktuaren hezetasun maximoa:");
                             int hezetasunmax = sc.nextInt();
                             sc.nextLine();
