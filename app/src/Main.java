@@ -2,9 +2,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main klasea programa nagusia da.
+ */
 public class Main {
     /**
-     * Programa hasten duen metodoa.
+     * Programa nagusiaren sarrera puntua.
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -61,7 +64,9 @@ public class Main {
     }
 
     /**
-     * Erabiltzailearen roletik menua erakusten duen metodoa.
+     * Erabiltzailearen menua bistaratzen du.
+     * @param e erabiltzailea
+     * @param biltegia biltegiaren ID
      */
     public void aurrenekomenua(erabiltzailea e, int biltegia) {
         Scanner sc = new Scanner(System.in);

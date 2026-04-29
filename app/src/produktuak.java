@@ -1,6 +1,9 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Produktuak klasea produktuen informazioa kudeatzen du.
+ */
 public class produktuak {
     int id;
     String erreferentzia;
@@ -8,7 +11,11 @@ public class produktuak {
     String empresa;
 
     /**
-     * Produktu objektua datu guztiekin sortzen du.
+     * Produktuak objektua sortzen du.
+     * @param id produktua ID
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
      */
     public produktuak(int id, String erreferentzia, String izena, String empresa) {
         this.id = id;
@@ -18,7 +25,9 @@ public class produktuak {
     }
 
     /**
-     * Produktuaren ID eta izena duen konstruktorea.
+     * Produktuak objektua sortzen du.
+     * @param id produktua ID
+     * @param izena izena
      */
     public produktuak(int id, String izena) {
         this.id = id;
@@ -26,7 +35,10 @@ public class produktuak {
     }
 
     /**
-     * Produktu berri bat izen eta enpresarekin sortzen du.
+     * Produktuak objektua sortzen du.
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
      */
     public produktuak(String erreferentzia, String izena, String empresa) {
         this.erreferentzia = erreferentzia;
@@ -35,7 +47,9 @@ public class produktuak {
     }
 
     /**
-     * Produktuaren erreferentzia datu-baseatik bueltatzen du.
+     * Produktuaren erreferentzia bueltatzen du.
+     * @param id_produkto produktua ID
+     * @return erreferentzia
      */
     public String erreferentziabueltatu(int id_produkto) {
         String sql = "{call produktu_erreferentzia(?, ?)}";
@@ -59,7 +73,8 @@ public class produktuak {
     }
 
     /**
-     * Produktuen zerrenda datu-baseatik jasotzen du.
+     * Produktuak bistaratzen ditu.
+     * @return produktuen zerrenda
      */
     public ArrayList<produktuak> ProduktuakBistaratu() {
 
@@ -89,7 +104,9 @@ public class produktuak {
     }
 
     /**
-     * Produktuaren erreferentzia motaren arabera kode bat itzultzen du.
+     * Erreferentzia konprobatzen du.
+     * @param ref erreferentzia
+     * @return 1,2,3 edo 0
      */
     public int erreferentziaKomprobatu(String ref) {
 
@@ -105,7 +122,9 @@ public class produktuak {
     }
 
     /**
-     * Produktu bat datu-baseatik ezabatzeko metodoa.
+     * Produktua ezabatzen du.
+     * @param id_erabiltzailea produktua ID
+     * @return true ondo joan bada
      */
     public boolean produktuaEzabatu(int id_erabiltzailea) {
         String sql = "{call produktua_borratu(?)}";
@@ -126,7 +145,10 @@ public class produktuak {
     }
 
     /**
-     * Produktu bat izen eta enpresa bidez bilatzen du.
+     * Produktua konprobatzen du.
+     * @param nuevonombre izena
+     * @param nuevaempresa empresa
+     * @return produktua ID edo 0
      */
     public int ProduktuaKomprobatu(String nuevonombre, String nuevaempresa) {
         produktuak comprobar = new produktuak(null, null, null);

@@ -2,6 +2,9 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * ProduktuBiltegia klasea biltegiko produktuen informazioa kudeatzen du.
+ */
 public class produktuBiltegia {
     int id_produktua;
     int id_biltegia;
@@ -12,7 +15,13 @@ public class produktuBiltegia {
     LocalDate iraungintze_data;
 
     /**
-     * Produktu baten biltegi egoera deskribatzen duen konstruktorea.
+     * ProduktuBiltegia objektua sortzen du.
+     * @param id_produktua produktua ID
+     * @param id_biltegia biltegia ID
+     * @param pasilokozen pasiloko zenbakia
+     * @param kokapenkodea kokapen kodea
+     * @param kantitatea kantitatea
+     * @param iraungintze_data iraungintze data
      */
     public produktuBiltegia(int id_produktua, int id_biltegia, int pasilokozen, int kokapenkodea, int kantitatea,
             LocalDate iraungintze_data) {
@@ -25,7 +34,10 @@ public class produktuBiltegia {
     }
 
     /**
-     * Produktu baten stock informazioa gordetzen duen konstruktorea.
+     * ProduktuBiltegia objektua sortzen du.
+     * @param kantitatea kantitatea
+     * @param izena izena
+     * @param id_produktua produktua ID
      */
     public produktuBiltegia(int kantitatea, String izena, int id_produktua) {
         this.kantitatea = kantitatea;
@@ -34,7 +46,9 @@ public class produktuBiltegia {
     }
 
     /**
-     * Produktu bat biltegian sartzen du.
+     * Produktua biltegian sartzen du.
+     * @param pb produktuBiltegia objektua
+     * @return true ondo joan bada
      */
     public boolean produktuaBiltegianSartu(produktuBiltegia pb) {
         String sql = "{call produktua_Biltegian_Sartu(?, ?, ?, ?, ?, ?)}";
@@ -60,7 +74,10 @@ public class produktuBiltegia {
     }
 
     /**
-     * Produktu bat biltegitik ezabatzeko metodoa.
+     * Produktua biltegitik ezabatzen du.
+     * @param id_producto produktua ID
+     * @param biltegia biltegia ID
+     * @return true ondo joan bada
      */
     public boolean produktuaEzabatu(int id_producto, int biltegia) {
         String sql = "{call prduktua_biltegitik_borratu(?, ?)}";
@@ -82,7 +99,9 @@ public class produktuBiltegia {
     }
 
     /**
-     * Produktu bat biltegian eguneratzen du.
+     * Produktua biltegian aldatzen du.
+     * @param pb produktuBiltegia objektua
+     * @return true ondo joan bada
      */
     public boolean ProduktuaBiltegianAldatu(produktuBiltegia pb) {
         String sql = "{call Produktua_biltegian_aldatu(?, ?, ?, ?, ?, ?)}";
@@ -107,7 +126,11 @@ public class produktuBiltegia {
     }
 
     /**
-     * Produktuaren stock kantitatea murrizten du biltegian.
+     * Stocka kentzen du.
+     * @param id_produktua produktua ID
+     * @param id_biltegia biltegia ID
+     * @param atera_kantitatea atera kantitatea
+     * @return true ondo joan bada
      */
     public boolean stockaKendu(int id_produktua, int id_biltegia, int atera_kantitatea) {
         String sql = "{call stocka_kendu(?, ?, ?)}";
@@ -131,7 +154,9 @@ public class produktuBiltegia {
 
     
     /**
-     * Biltegi baten produktuak zerrendatzen ditu.
+     * Biltegiko produktuak bistaratzen ditu.
+     * @param id_biltegia biltegia ID
+     * @return produktuen zerrenda
      */
     public ArrayList<produktuBiltegia> biltegikoProduktuakBistaratu(int id_biltegia) {
         String sql = "{call biltegiko_produktuak_ikusi(?)}";

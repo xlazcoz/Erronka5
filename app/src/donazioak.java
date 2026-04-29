@@ -2,6 +2,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.*;
 
+/**
+ * Donazioak klasea donazioen informazioa kudeatzen du.
+ */
 public class donazioak {
     int id_donazioa;
     String donatzailea;
@@ -11,7 +14,10 @@ public class donazioak {
     String produktuaren_izena;
 
     /**
-     * Donazio berri bat sortzeko konstruktorea.
+     * Donazioa objektua sortzen du.
+     * @param donatzailea donatzailearen izena
+     * @param donazioarendata donazioaren data
+     * @param produktua produktua
      */
     public donazioak(String donatzailea, LocalDate donazioarendata, int produktua) {
         this.donatzailea = donatzailea;
@@ -20,7 +26,11 @@ public class donazioak {
     }
 
     /**
-     * Donazio objektu bat itzultzen duen beste konstruktorea.
+     * Donazioa objektua sortzen du.
+     * @param id_donazioa donazioaren ID
+     * @param donatzailea donatzailearen izena
+     * @param donazioarendata donazioaren data
+     * @param produktuaren_izena produktuaren izena
      */
     public donazioak(int id_donazioa, String donatzailea, LocalDate donazioarendata, String produktuaren_izena) {
         this.id_donazioa = id_donazioa;
@@ -30,7 +40,11 @@ public class donazioak {
     }
 
     /**
-     * Donazio objektua identifikatzailearekin sortzen du.
+     * Donazioa objektua sortzen du.
+     * @param id_donazioa donazioaren ID
+     * @param id_donatzailea donatzailearen ID
+     * @param donazioarendata donazioaren data
+     * @param produktua produktua
      */
     public donazioak(int id_donazioa, int id_donatzailea, LocalDate donazioarendata, int produktua) {
         this.id_donazioa = id_donazioa;
@@ -40,7 +54,9 @@ public class donazioak {
     }
 
     /**
-     * Donazio berria datu-basean gordetzen du.
+     * Donazioa sortzen du.
+     * @param d donazioa objektua
+     * @return true ondo joan bada
      */
     public boolean donazioaSortuIDarekin(donazioak d) {
         String sql = "{call donazioa_sortu(?, ?, ?)}";
@@ -63,7 +79,9 @@ public class donazioak {
     }
 
     /**
-     * Donazioaren datuak eguneratzen ditu datu-basean.
+     * Donazioa aldatzen du.
+     * @param d donazioa objektua
+     * @return true ondo joan bada
      */
     public boolean donazioaAldatu(donazioak d) {
         String sql = "{call donazioa_aldatu(?, ?, ?, ?)}";
@@ -87,7 +105,9 @@ public class donazioak {
     }
 
     /**
-     * Donazio bat datu-baseatik ezabatzen du.
+     * Donazioa ezabatzen du.
+     * @param id_donazioa donazioaren ID
+     * @return true ondo joan bada
      */
     public boolean donazioaEzabatu(int id_donazioa) {
         String sql = "{call donazioa_borratu(?)}";
@@ -108,7 +128,9 @@ public class donazioak {
     }
 
     /**
-     * Donazioen zerrenda datu-baseatik hartzen du.
+     * Donazioak bistaratzen ditu.
+     * @param biltegia biltegiaren ID
+     * @return donazioen zerrenda
      */
     public ArrayList<donazioak> donazioaBistaratu(int biltegia) {
         String sql = "{call donazioak_ikusi()}";
@@ -139,7 +161,7 @@ public class donazioak {
     }
 
     /**
-     * Donatzaileen lista kontsolan erakusten du.
+     * Donatzaileak bistaratzen ditu.
      */
     public void donatzaileakBistaratu() {
         String sql = "{call donatzaileak_ikusi()}";

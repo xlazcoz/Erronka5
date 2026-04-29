@@ -2,6 +2,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Erabiltzailea klasea erabiltzaileen informazioa kudeatzen du.
+ */
 public class erabiltzailea {
     int id_erabiltzailea;
     String izena;
@@ -10,7 +13,10 @@ public class erabiltzailea {
     int baimena_id;
 
     /**
-     * Erabiltzaile berri bat sortzeko konstruktorea.
+     * Erabiltzailea objektua sortzen du.
+     * @param izena erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     * @param baimena_id baimenaren ID
      */
     public erabiltzailea(String izena, String pasahitza, int baimena_id) {
         this.izena = izena;
@@ -19,7 +25,11 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzaile objektua ID eta informazioarekin sortzen du.
+     * Erabiltzailea objektua sortzen du.
+     * @param id_erabiltzailea erabiltzailearen ID
+     * @param izena erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     * @param baimena_id baimenaren ID
      */
     public erabiltzailea(int id_erabiltzailea, String izena, String pasahitza, int baimena_id) {
         this.izena = izena;
@@ -29,7 +39,10 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzaile objektua baimenarekin sortzen du.
+     * Erabiltzailea objektua sortzen du.
+     * @param id_erabiltzailea erabiltzailearen ID
+     * @param izena erabiltzailearen izena
+     * @param baimena erabiltzailearen baimena
      */
     public erabiltzailea(int id_erabiltzailea, String izena, String baimena) {
         this.id_erabiltzailea = id_erabiltzailea;
@@ -38,7 +51,9 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzailea login informazioarekin sortzen du.
+     * Erabiltzailea objektua sortzen du.
+     * @param izena erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
      */
     public erabiltzailea(String izena, String pasahitza) {
         this.izena = izena;
@@ -46,7 +61,9 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzaile berria datu-basean gordetzen du.
+     * Erabiltzailea sortzen du.
+     * @param erab erabiltzailea objektua
+     * @return true ondo joan bada
      */
     public boolean erabiltzaileaSortu(erabiltzailea erab) {
         String sql = "{call erabiltzailea_sortu(?, ?, ?)}";
@@ -69,7 +86,9 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzailearen datuak datu-basean aldatzen ditu.
+     * Erabiltzailea aldatzen du.
+     * @param erab erabiltzailea objektua
+     * @return true ondo joan bada
      */
     public boolean erabiltzaileaAldatu(erabiltzailea erab) {
         String sql = "{call erabiltzailea_aldatu(?, ?, ?, ?)}";
@@ -93,7 +112,9 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzaile bat datu-baseatik ezabatzeko metodoa.
+     * Erabiltzailea ezabatzen du.
+     * @param id_erabiltzailea erabiltzailearen ID
+     * @return true ondo joan bada
      */
     public boolean erabiltzaileaEzabatu(int id_erabiltzailea) {
         String sql = "{call erabiltzailea_borratu(?)}";
@@ -114,7 +135,7 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzailearen login egiaztatzen du eta baimena ezartzen du.
+     * Erabiltzailea identifikatzen eta baimena ezartzen du.
      */
     public void erabiltzaileaIdentifikatuEtaBaimenaEzarri() {
 
@@ -144,7 +165,8 @@ public class erabiltzailea {
     }
 
     /**
-     * Erabiltzaile guztiak datu-baseatik irakurtzen ditu.
+     * Erabiltzaileak bistaratzen ditu.
+     * @return erabiltzaileen zerrenda
      */
     public ArrayList<erabiltzailea> erabiltzaileakBistaratu() {
         String sql = "{call erabiltzaileak_ikusi()}";

@@ -2,10 +2,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Menu klasea menua kudeatzen du.
+ */
 public class menu {
 
     /**
-     * Produktuen kudeaketa menu bat erakusten du.
+     * Produktuen menua bistaratzen du.
      */
     public static void menuProductos() {
         Scanner sc = new Scanner(System.in);
@@ -166,7 +169,8 @@ public class menu {
     }
 
     /**
-     * Erabiltzaileen kudeaketa menu bat erakusten du.
+     * Erabiltzaileen menua bistaratzen du.
+     * @param e erabiltzailea
      */
     public static void menuErabiltzaileak(erabiltzailea e) {
         Scanner sc = new Scanner(System.in);
@@ -258,7 +262,9 @@ public class menu {
     }
 
     /**
-     * Biltegiaren menua eta bertako informazioa kudeatzen du.
+     * Biltegiaren menua bistaratzen du.
+     * @param e erabiltzailea
+     * @param biltegia biltegiaren ID
      */
     public static void menuBiltegia(erabiltzailea e, int biltegia) {
         Scanner sc = new Scanner(System.in);
@@ -358,7 +364,8 @@ public class menu {
     }
 
     /**
-     * Irteeren kudeaketa menu bat erakusten du.
+     * Irteeren menua bistaratzen du.
+     * @param biltegia biltegiaren ID
      */
     public static void menuIrteerak(int biltegia) {
         Scanner sc = new Scanner(System.in);
@@ -485,7 +492,8 @@ public class menu {
     }
 
     /**
-     * Donazioen kudeaketa menu bat erakusten du.
+     * Donazioen menua bistaratzen du.
+     * @param biltegia biltegiaren ID
      */
     public static void menuDonazioa(int biltegia) {
         Scanner sc = new Scanner(System.in);

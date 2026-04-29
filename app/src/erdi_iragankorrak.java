@@ -1,12 +1,21 @@
 
 import java.sql.*;
 
+/**
+ * Erdi_iragankorrak klasea erdi iragankor produktuen informazioa kudeatzen du.
+ */
 public class erdi_iragankorrak extends produktuak {
     boolean hoztu;
     int hezetasunmax;
 
     /**
-     * Erdi iragankor produktua sortzeko konstruktorea.
+     * Erdi_iragankorrak objektua sortzen du.
+     * @param id produktua ID
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
+     * @param hoztu hoztu behar den
+     * @param hezetasunmax hezetasun maximoa
      */
     public erdi_iragankorrak(int id, String erreferentzia, String izena, String empresa, boolean hoztu,
             int hezetasunmax) {
@@ -16,7 +25,12 @@ public class erdi_iragankorrak extends produktuak {
     }
 
     /**
-     * Erdi iragankor produktu berria sortzeko konstruktorea.
+     * Erdi_iragankorrak objektua sortzen du.
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
+     * @param hoztu hoztu behar den
+     * @param hezetasunmax hezetasun maximoa
      */
     public erdi_iragankorrak(String erreferentzia, String izena, String empresa, boolean hoztu, int hezetasunmax) {
         super(erreferentzia, izena, empresa);
@@ -25,7 +39,9 @@ public class erdi_iragankorrak extends produktuak {
     }
 
     /**
-     * Erdi iragankor produktua datu-basean sortzen du.
+     * Produktua sortzen du.
+     * @param er erdi_iragankorrak objektua
+     * @return true ondo joan bada
      */
     public boolean produktuaSortu(erdi_iragankorrak er) {
         String sql = "{call erdi_iragankorra_sortu(?, ?, ?, ?, ?)}";
@@ -50,7 +66,9 @@ public class erdi_iragankorrak extends produktuak {
     }
 
     /**
-     * Erdi iragankor produktua datu-basean eguneratzen du.
+     * Produktua aldatzen du.
+     * @param er erdi_iragankorrak objektua
+     * @return true ondo joan bada
      */
     public boolean produktuaAldatu(erdi_iragankorrak er) {
         String sql = "{call erdi_iragankorra_aldatu(?, ?, ?, ?, ?)}";

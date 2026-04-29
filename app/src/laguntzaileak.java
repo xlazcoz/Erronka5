@@ -1,9 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Laguntzaileak klasea laguntzaile metodoak ditu.
+ */
 public class laguntzaileak {
 
     /**
-     * Bai edo ez erantzuna jasotzen duen laguntzailea.
+     * Erabiltzaileari galdera egiten dio eta true edo false itzultzen du.
+     * @param textua galdera
+     * @return true b bada, false e bada
      */
     public static boolean true_false(String textua) {
         System.out.println(textua);

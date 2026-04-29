@@ -1,13 +1,19 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Biltegia klasea biltegien informazioa kudeatzen du.
+ */
 public class biltegia {
     Integer kodea_biltegia;
     String izena;
     String kokapena;
 
     /**
-     * Biltegi baten objektua sortzen duen konstruktorea.
+     * Biltegia objektua sortzen du.
+     * @param kodea_biltegia biltegiaren kodea
+     * @param izena biltegiaren izena
+     * @param kokapena biltegiaren kokapena
      */
     public biltegia(Integer kodea_biltegia, String izena, String kokapena) {
         this.kodea_biltegia = kodea_biltegia;
@@ -16,7 +22,8 @@ public class biltegia {
     }
 
     /**
-     * Agortutako produktuen zerrenda bueltatzen du.
+     * Agortutako produktuak erakusten ditu.
+     * @return agortutako produktuen zerrenda
      */
     public ArrayList<produktuBiltegia> agortutakoProduktuak() {
         String sql = "{call agprtutako_produktuak_ikusi()}";
@@ -46,7 +53,8 @@ public class biltegia {
     }
 
     /**
-     * Donazio puntu 0 duten produktuen zerrenda bueltatzen du.
+     * Donazioa 0 diren produktuak erakusten ditu.
+     * @return donazioa 0 diren produktuen zerrenda
      */
     public ArrayList<produktuak> donazio0() {
         String sql = "{call donazio0_produktuak_ikusi()}";
@@ -75,7 +83,9 @@ public class biltegia {
     }
 
     /**
-     * Biltegi bateko stock maximoa duen produktua itzultzen du.
+     * Biltegi batean stock maximoa duen produktua erakusten du.
+     * @param biltegia biltegiaren ID
+     * @return stock maximoa duen produktua
      */
     public produktuak StockMax(int biltegia) {
         String sql = "{call Stock_Max(?)}";
@@ -106,7 +116,9 @@ public class biltegia {
     }
 
     /**
-     * Biltegi baten kokapena konprobatu eta itzultzen du.
+     * Biltegi bat konprobatzen du.
+     * @param biltegia biltegiaren ID
+     * @return biltegiaren kokapena
      */
     public String biltegiaKomprobatu(int biltegia) {
         String sql = "{call biltegi_Komprobatzen(?, ?)}";
@@ -136,7 +148,8 @@ public class biltegia {
     }
 
     /**
-     * Biltegi guztiak datu-baseatik bistaratzeko itzultzen ditu.
+     * Biltegi guztiak bistaratzen ditu.
+     * @return biltegien zerrenda
      */
     public ArrayList<biltegia> biltegiakBistaratu() {
         String sql = "{call biltegiak_ikusi()}";

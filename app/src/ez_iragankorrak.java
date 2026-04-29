@@ -1,10 +1,18 @@
 import java.sql.*;
 
+/**
+ * Ez_iragankorrak klasea ez iragankor produktuen informazioa kudeatzen du.
+ */
 public class ez_iragankorrak extends produktuak {
     boolean kontserba;
 
     /**
-     * Ez iragankor produktua sortzeko konstruktorea.
+     * Ez_iragankorrak objektua sortzen du.
+     * @param id produktua ID
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
+     * @param kontserba kontserba den
      */
     public ez_iragankorrak(int id, String erreferentzia, String izena, String empresa, boolean kontserba) {
         super(id, erreferentzia, izena, empresa);
@@ -12,7 +20,11 @@ public class ez_iragankorrak extends produktuak {
     }
 
     /**
-     * Ez iragankor produktu berria sortzeko konstruktorea.
+     * Ez_iragankorrak objektua sortzen du.
+     * @param erreferentzia erreferentzia
+     * @param izena izena
+     * @param empresa empresa
+     * @param kontserba kontserba den
      */
     public ez_iragankorrak(String erreferentzia, String izena, String empresa,
             boolean kontserba) {
@@ -21,7 +33,9 @@ public class ez_iragankorrak extends produktuak {
     }
 
     /**
-     * Ez iragankor produktua datu-basean sortzen du.
+     * Produktua sortzen du.
+     * @param ez ez_iragankorrak objektua
+     * @return true ondo joan bada
      */
     public boolean produktuaSortu(ez_iragankorrak ez) {
         String sql = "{call ez_iragankorra_sortu(?, ?, ?, ?)}";
@@ -46,7 +60,9 @@ public class ez_iragankorrak extends produktuak {
     }
 
     /**
-     * Ez iragankor produktua datu-basean eguneratzen du.
+     * Produktua aldatzen du.
+     * @param ez ez_iragankorrak objektua
+     * @return true ondo joan bada
      */
     public boolean produktuaAldatu(ez_iragankorrak ez) {
         String sql = "{call ez_iragankorra_aldatu(?, ?, ?, ?)}";
