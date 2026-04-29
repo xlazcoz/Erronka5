@@ -8,7 +8,6 @@ public class Main {
         String bil = "";
         int saiakerak1 = 0;
         int biltegia = 0;
-
         int saiakerak = 0;
         erabiltzailea e = null;
 
