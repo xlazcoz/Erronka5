@@ -1,0 +1,33 @@
+# Sistema de Gestión de Almacén y Donaciones - Cruz Roja (Erronka 5)
+
+## Descripción del Proyecto
+Desarrollo de un sistema integral para la gestión de un almacén logístico de la Cruz Roja, destinado a la recepción y envío de donaciones alimentarias a zonas de conflicto[cite: 3]. El proyecto aborda múltiples capas tecnológicas: una aplicación de gestión orientada a objetos, un portal web de transparencia basado en transformaciones de datos, una base de datos relacional avanzada y un sistema de control domótico y de seguridad mediante dispositivos IoT[cite: 3].
+
+El ciclo de desarrollo se ha gestionado mediante metodologías ágiles (Scrum), apoyado en diagramado UML, control de versiones (Git/GitHub) y pruebas unitarias[cite: 3].
+
+## Arquitectura y Tecnologías
+*   **Gestión (Back-office):** Java (Programación Orientada a Objetos, control de Excepciones)[cite: 3].
+*   **Web (Front-office):** HTML generado dinámicamente mediante transformaciones XSLT sobre archivos XML validados con XSD[cite: 3].
+*   **Base de Datos:** MySQL (Diseño normalizado, Procedimientos Almacenados, Triggers y Vistas)[cite: 3].
+*   **Control IoT:** Simulación de red de sensores y actuadores (temperatura, movimiento, humo, control de accesos) accesibles vía red Wi-Fi y dispositivo móvil[cite: 3].
+*   **Gestión del Proyecto:** Trello, diagramas de clases UML, metodologías ágiles y refactorización continua[cite: 3].
+
+## Funcionalidades Principales
+
+### 1. Gestión de Inventario y Trazabilidad (App Java)
+*   Administración del almacén con categorización estricta de alimentos (perecederos, semi-perecederos y no perecederos), gestionando atributos específicos como fechas de caducidad, necesidades de refrigeración y humedad[cite: 3].
+*   Sistema de control de accesos basado en tres perfiles de usuario con permisos segmentados: Administrador, Gestor de Entradas/Salidas y Gestor de Información[cite: 3].
+*   Trazabilidad completa registrando origen (donantes) y destino (envíos a zonas de conflicto)[cite: 3].
+
+### 2. Base de Datos Avanzada (Persistencia Segura)
+*   **Independencia de la lógica de negocio:** Todas las operaciones CRUD (entradas, salidas, actualizaciones) se ejecutan de forma segura y centralizada utilizando Procedimientos Almacenados en MySQL, eliminando consultas SQL directas desde la aplicación Java[cite: 3].
+*   **Automatización:** Implementación de Triggers para la actualización automática y coherente del stock en base a los movimientos registrados[cite: 3].
+*   **Reporting:** Creación de Vistas SQL para la generación eficiente de informes clave (productos próximos a caducar, top donantes, inventario por almacén)[cite: 3].
+
+### 3. Portal de Transparencia (XML/XSLT)
+*   Generación de la página web `donazioak.html` mediante la transformación automatizada de un conjunto de datos `donazioak.xml` utilizando reglas XSLT y el método Java `transformatuXmlHtmln`[cite: 3].
+*   Validación estricta de la estructura y tipos de datos del documento XML de donaciones mediante un esquema XSD[cite: 3].
+
+### 4. Sistema de Seguridad y Climatización Automatizada (IoT)
+*   **Gestión Térmica:** Control automatizado del aire acondicionado mediante termostato inteligente para asegurar la correcta conservación de los alimentos (rango de 10º a 22º)[cite: 3].
+*   **Seguridad Física:** Integración de sensores de movimiento, humo y presencia conectados a sistemas de alerta (sirenas, notificaciones push), cámaras web para identificación en accesos y control remoto de puertas y persianas[cite: 3].
